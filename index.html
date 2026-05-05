@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTuber Building Floor Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: #fff9f0;
+            background-image: radial-gradient(#ffe8d6 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+
+        .vtuber-card {
+            border: 4px solid #333;
+            box-shadow: 8px 8px 0px #333;
+            transition: all 0.2s ease;
+        }
+
+        .vtuber-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 10px 10px 0px #333;
+        }
+
+        .floor-tag {
+            background: #ff7eb9;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 999px;
+            font-weight: 900;
+            border: 3px solid #333;
+        }
+
+        .btn-yt { 
+            background-color: #ff0000; 
+            border: 2px solid #333; 
+            box-shadow: 3px 3px 0px #333; 
+            color: white;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .btn-x { 
+            background-color: #111; 
+            border: 2px solid #333; 
+            box-shadow: 3px 3px 0px #333; 
+            color: white;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        
+        .btn-yt:hover, .btn-x:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0px #333;
+        }
+
+        .character-name {
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .character-name::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 126, 185, 0.2);
+            z-index: -1;
+        }
+
+        .character-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border: 3px solid #333;
+            border-radius: 20px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 text-gray-800">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-black mb-4 flex items-center justify-center gap-2">
+                <i class="fas fa-building text-pink-500"></i>
+                FLOOR GUIDE VTuber
+            </h1>
+            <p class="text-lg font-bold bg-white inline-block px-6 py-2 border-2 border-gray-800 rounded-full">
+                1Fから8Fまで 書泉をご案内した 個性的なVTuber達をご紹介！
+            </p>
+        </header>
+
+        <div class="space-y-12">
+            <!-- 1F -->
+            <section class="vtuber-card bg-white p-6 md:p-8 rounded-3xl relative">
+                <div class="absolute -top-5 left-8">
+                    <span class="floor-tag text-xl">1F</span>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 mt-2">
+                    <img src="https://www.dropbox.com/scl/fi/tfnn7542neu228cwekjkt/Maya.png?rlkey=wy3m284q5cfcoh9x9kdsc6v4a&st=l7uykzpd&dl=1" alt="さやま まや" class="character-img mx-auto md:mx-0">
+                    <div class="flex-1">
+                        <h2 class="text-3xl font-black character-name mb-4">さやま まや</h2>
+                        <p class="text-gray-700 leading-loose text-lg font-medium">
+                            7色ボイスのお絵描き天使、「さやま まや」です! 3度の飯より創作がすき! 脳みそバグる声帯マンション×なんでも作る超クリエイター! フォロワーさんを巻き込んでアニメを描いたり、シチュエーションボイスを書いたり、アプリを作ったり……一緒に楽しい世界を作って遊びませんか!? 本屋大賞ノミネート作全読破中です!語りましょう。
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap md:flex-col gap-4 justify-center">
+                        <a href="https://youtube.com/@sayamamaya" target="_blank" class="btn-yt">
+                            <i class="fab fa-youtube"></i> YouTube登録
+                        </a>
+                        <a href="https://x.com/sayama_live" target="_blank" class="btn-x">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> Xフォロー
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2F -->
+            <section class="vtuber-card bg-white p-6 md:p-8 rounded-3xl relative">
+                <div class="absolute -top-5 left-8">
+                    <span class="floor-tag text-xl" style="background-color: #ffd93d; color: #333;">2F</span>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 mt-2">
+                    <img src="https://www.dropbox.com/scl/fi/rn58hhfd429o28u9r64kw/Arumi.png?rlkey=smqr8afxgfw7rn0d1izfg44zq&st=p3ypc9os&dl=1" alt="花傘あるみ" class="character-img mx-auto md:mx-0">
+                    <div class="flex-1">
+                        <h2 class="text-3xl font-black character-name mb-4">花傘あるみ</h2>
+                        <p class="text-gray-700 leading-loose text-lg font-medium">
+                            スイプロ所属「頭脳は大人、心はクソガキ」深海生まれのてんさいクラゲVTuber! 本業ではマーケティングやチームビルディング、広報、予実管理や管理職などを任されており、ビジネスに役立つ本をオススメできればと思っております!!
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap md:flex-col gap-4 justify-center">
+                        <a href="https://youtube.com/@arumihanagasa" target="_blank" class="btn-yt">
+                            <i class="fab fa-youtube"></i> YouTube登録
+                        </a>
+                        <a href="https://x.com/Arumi_Hanagasa" target="_blank" class="btn-x">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> Xフォロー
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3F -->
+            <section class="vtuber-card bg-white p-6 md:p-8 rounded-3xl relative">
+                <div class="absolute -top-5 left-8">
+                    <span class="floor-tag text-xl" style="background-color: #ffb6c1; color: white;">3F</span>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 mt-2">
+                    <img src="https://www.dropbox.com/scl/fi/dny6yxu5y7wiwwlxb2jjt/Pome.png?rlkey=wdt01ve6bb2k3jl26dhdfz8rb&st=h1c87vcg&dl=1" alt="歌与ポメ" class="character-img mx-auto md:mx-0">
+                    <div class="flex-1">
+                        <h2 class="text-3xl font-black character-name mb-4">歌与ポメ</h2>
+                        <p class="text-gray-700 leading-loose text-lg font-medium">
+                            歌うこととしゃべることが大好きな理系大学院卒の社畜系VTuber。「みんなと一緒に楽しく生きる!」をモットーに、配信活動に加え数回のリアルイベントも企画。実はヨーグルトの妖精だが、人間たちに存在を気付いてもらうため、定期的にポメラニアンの要素を吸っているという噂も…
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap md:flex-col gap-4 justify-center">
+                        <a href="https://youtube.com/@utayo_pome" target="_blank" class="btn-yt">
+                            <i class="fab fa-youtube"></i> YouTube登録
+                        </a>
+                        <a href="https://x.com/pome_utayo" target="_blank" class="btn-x">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> Xフォロー
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4F -->
+            <section class="vtuber-card bg-white p-6 md:p-8 rounded-3xl relative">
+                <div class="absolute -top-5 left-8">
+                    <span class="floor-tag text-xl" style="background-color: #ff6b6b;">4F</span>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 mt-2">
+                    <img src="https://www.dropbox.com/scl/fi/av4yper2nwan5tecpmw9g/Mitama.png?rlkey=6m9fsksl6sbvte12vqbpmmdc1&st=s9jm8p5j&dl=1" alt="絣華ミタマ" class="character-img mx-auto md:mx-0">
+                    <div class="flex-1">
+                        <h2 class="text-3xl font-black character-name mb-4">絣華ミタマ</h2>
+                        <p class="text-gray-700 leading-loose text-lg font-medium">
+                            Vtuber初の「多姿類」を名乗る猫魁の緋華ミタマと申します! 小説に漫画、画集に絵本に図鑑…気になったらほいほい手に取っちゃう…読むのはもちろん装丁にもトキメキがいっぱい、本って面白い!
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap md:flex-col gap-4 justify-center">
+                        <a href="https://youtube.com/@henge_mitama" target="_blank" class="btn-yt">
+                            <i class="fab fa-youtube"></i> YouTube登録
+                        </a>
+                        <a href="https://x.com/henge_mitama" target="_blank" class="btn-x">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> Xフォロー
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5F -->
+            <section class="vtuber-card bg-white p-6 md:p-8 rounded-3xl relative">
+                <div class="absolute -top-5 left-8">
+                    <span class="floor-tag text-xl" style="background-color: #f39c12; color: white;">5F</span>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 mt-2">
+                    <img src="https://www.dropbox.com/scl/fi/fkyktllkg0lgabyn82pe4/Kapura.png?rlkey=rfkqza7nktcvo8pk443c98ps2&st=wzzm9fcm&dl=1" alt="風見カプラ" class="character-img mx-auto md:mx-0">
+                    <div class="flex-1">
+                        <h2 class="text-3xl font-black character-name mb-4">風見カプラ</h2>
+                        <p class="text-gray-700 leading-loose text-lg font-medium">
+                            Всем привет! 日本語とロシア語で配信中! 語学と創作大好きなVTuber 風見カプラです! 辞書通読配信や語学講座の同時視聴、毎日の単語紹介ショートなどで言葉を知る楽しさを発信しています!
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap md:flex-col gap-4 justify-center">
+                        <a href="https://youtube.com/@kapra_kazami" target="_blank" class="btn-yt">
+                            <i class="fab fa-youtube"></i> YouTube登録
+                        </a>
+                        <a href="https://x.com/kazami_kapra" target="_blank" class="btn-x">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> Xフォロー
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6F -->
+            <section class="vtuber-card bg-white p-6 md:p-8 rounded-3xl relative">
+                <div class="absolute -top-5 left-8">
+                    <span class="floor-tag text-xl" style="background-color: #2d3436;">6F</span>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 mt-2">
+                    <img src="https://www.dropbox.com/scl/fi/fcn137gxv40h6ud56api2/Yasumi.png?rlkey=nbx5v04ewgi6qa1twl8dz848k&st=0830x86o&dl=1" alt="やすみ" class="character-img mx-auto md:mx-0">
+                    <div class="flex-1">
+                        <h2 class="text-3xl font-black character-name mb-4">やすみ</h2>
+                        <p class="text-gray-700 leading-loose text-lg font-medium">
+                            こんばんは、やすみといいます。白黒世界に住んでいる、君の友達です。誰もが寝静まった深夜2時、寂しさや不安が消えるまで、退屈が満たされるまで、人恋しさがおさまるまで、朝の光が見えるまで、私とお話しませんか?
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap md:flex-col gap-4 justify-center">
+                        <a href="https://youtube.com/@yasumi_ch" target="_blank" class="btn-yt">
+                            <i class="fab fa-youtube"></i> YouTube登録
+                        </a>
+                        <a href="https://x.com/_Yasumichan_" target="_blank" class="btn-x">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> Xフォロー
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7F -->
+            <section class="vtuber-card bg-white p-6 md:p-8 rounded-3xl relative">
+                <div class="absolute -top-5 left-8">
+                    <span class="floor-tag text-xl" style="background-color: #1a2a6c; color: white;">7F</span>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 mt-2">
+                    <img src="https://www.dropbox.com/scl/fi/fhx6uvmum8jfi4e8w5e0h/Kanon.png?rlkey=xubkrte1vki80yeoncwj2qk76&st=cvqbryk1&dl=1" alt="ほのかかのん" class="character-img mx-auto md:mx-0">
+                    <div class="flex-1">
+                        <h2 class="text-3xl font-black character-name mb-4">ほのかかのん</h2>
+                        <p class="text-gray-700 leading-loose text-lg font-medium">
+                            全速前進！ヨーソーロー！ 元カモメVTuberのほのかかのんです! おしゃべりすること、食べること、歌うこと、本を読むこと、ゲームをすること、とにかくなんでも大好きな天真爛漫で笑顔の耐えないVTuberです! 今日疲れたな…元気欲しいなって言う時に、是非ほのかかのんに会いに来てください!元気を分けてあげちゃいます!
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap md:flex-col gap-4 justify-center">
+                        <a href="https://youtube.com/channel/UCrj3vvhicsxH-Q4EbaMJ2iw" target="_blank" class="btn-yt">
+                            <i class="fab fa-youtube"></i> YouTube登録
+                        </a>
+                        <a href="https://x.com/honokano_V" target="_blank" class="btn-x">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> Xフォロー
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8F -->
+            <section class="vtuber-card bg-white p-6 md:p-8 rounded-3xl relative">
+                <div class="absolute -top-5 left-8">
+                    <span class="floor-tag text-xl" style="background-color: #a29bfe; color: white;">8F</span>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 mt-2">
+                    <img src="https://www.dropbox.com/scl/fi/wgy6f5uwn6ky3pcg5rnln/Kaede.png?rlkey=56l0ckxv0iq4klcpi1mki63tr&st=wssbu6c4&dl=1" alt="紫月かなで" class="character-img mx-auto md:mx-0">
+                    <div class="flex-1">
+                        <h2 class="text-3xl font-black character-name mb-4">紫月かなで</h2>
+                        <p class="text-gray-700 leading-loose text-lg font-medium">
+                            紫色大好きVtuberの紫月かなでです! 夢は紫色になること! 沢山の人の私を知ってもらって着実に紫色に近づきたいので是非覚えていってください!
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap md:flex-col gap-4 justify-center">
+                        <a href="https://youtube.com/@kanadeshizuki" target="_blank" class="btn-yt">
+                            <i class="fab fa-youtube"></i> YouTube登録
+                        </a>
+                        <a href="https://x.com/kanade_shizuki" target="_blank" class="btn-x">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> Xフォロー
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="mt-20 mb-10 text-center font-bold text-gray-400">
+            &copy; VTuber Building Floor Guide
+        </footer>
+    </div>
+
+</body>
+</html>
