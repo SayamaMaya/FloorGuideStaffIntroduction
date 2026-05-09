@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>VTuber Building Floor Guide</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,11 +19,9 @@
         .vtuber-card {
             border: 4px solid #333;
             box-shadow: 8px 8px 0px #333;
-            transition: all 0.2s ease;
         }
 
         .floor-tag {
-            background: #ff7eb9;
             color: white;
             padding: 4px 16px;
             border-radius: 999px;
@@ -42,7 +40,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            white-space: nowrap;
         }
         .btn-x { 
             background-color: #111; 
@@ -55,7 +52,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            white-space: nowrap;
         }
 
         .character-name {
@@ -78,14 +74,93 @@
         .character-img {
             width: 240px;
             height: 240px;
-            object-fit: contain; 
+            object-fit: contain;
             flex-shrink: 0;
+        }
+
+        /* --- Game Styles --- */
+        #game-section {
+            margin-top: 5rem;
+            padding-top: 5rem;
+            border-top: 4px dashed #333;
+        }
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            background: #fff;
+            border: 4px solid #333;
+            box-shadow: 8px 8px 0px #333;
+            border-radius: 2rem;
+            overflow: hidden;
+            touch-action: none;
+        }
+        #game-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 249, 240, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        }
+        .game-ui {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            padding: 0 20px;
+            pointer-events: none;
+            display: flex;
+            justify-content: space-between;
+            z-index: 10;
+        }
+        .ui-bubble {
+            background: white;
+            border: 3px solid #333;
+            padding: 5px 15px;
+            border-radius: 999px;
+            font-weight: 900;
+            box-shadow: 3px 3px 0px #333;
+        }
+        .btn-play {
+            background-color: #333;
+            color: white;
+            padding: 16px 48px;
+            border-radius: 999px;
+            font-weight: 900;
+            font-size: 1.5rem;
+            border: 3px solid #000;
+        }
+        .btn-share {
+            background-color: #000;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-weight: 900;
+            font-size: 1.25rem;
+            border: 3px solid #333;
+            box-shadow: 4px 4px 0px #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
         }
     </style>
 </head>
 <body class="p-4 md:p-8 text-gray-800">
 
     <div class="max-w-4xl mx-auto">
+        <!-- Header -->
         <header class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-black mb-4 flex items-center justify-center gap-2">
                 <i class="fas fa-building text-pink-500"></i>
@@ -96,64 +171,246 @@
             </p>
         </header>
 
-        <div class="space-y-12">
-            <script>
-                const vtubers = [
-                    { f: "1F", color: "#ff7eb9", name: "さやま まや", img: "https://www.dropbox.com/scl/fi/tfnn7542neu228cwekjkt/Maya.png?rlkey=wy3m284q5cfcoh9x9kdsc6v4a&st=l7uykzpd&raw=1", desc: "7色ボイスのお絵描き天使、「さやま まや」です! 3度の飯より創作がすき! 脳みそバグる声帯マンション×なんでも作る超クリエイター! フォロワーさんを巻き込んでアニメを描いたり、シチュエーションボイスを書いたり、アプリを作ったり……一緒に楽しい世界を作って遊びませんか!? 本屋大賞ノミネート作全読破中です!語りましょう。", yt: "https://youtube.com/@sayamamaya", x: "https://x.com/sayama_live" },
-                    { f: "2F", color: "#ffd93d", textColor: "#333", name: "花傘あるみ", img: "https://www.dropbox.com/scl/fi/rn58hhfd429o28u9r64kw/Arumi.png?rlkey=smqr8afxgfw7rn0d1izfg44zq&st=p3ypc9os&raw=1", desc: "スイプロ所属「頭脳は大人、心はクソガキ」深海生まれのてんさいクラゲVTuber! 本業ではマーケティングやチームビルディング、広報、予実管理や管理職などを任されており、ビジネスに役立つ本をオススメできればと思っております!!", yt: "https://youtube.com/@arumihanagasa", x: "https://x.com/Arumi_Hanagasa" },
-                    { f: "3F", color: "#ffb6c1", name: "歌与ポメ", img: "https://www.dropbox.com/scl/fi/dny6yxu5y7wiwwlxb2jjt/Pome.png?rlkey=wdt01ve6bb2k3jl26dhdfz8rb&st=h1c87vcg&raw=1", desc: "歌うこととしゃべることが大好きな理系大学院卒の社畜系VTuber。「みんなと一緒に楽しく生きる!」をモットーに、配信活動に加え数回のリアルイベントも企画。実はヨーグルトの妖精だが、人間たちに存在を気付いてもらうため、定期的にポメラニアンの要素を吸っているという噂も…", yt: "https://youtube.com/@utayo_pome", x: "https://x.com/pome_utayo" },
-                    { f: "4F", color: "#ff6b6b", name: "絣華ミタマ", img: "https://www.dropbox.com/scl/fi/av4yper2nwan5tecpmw9g/Mitama.png?rlkey=6m9fsksl6sbvte12vqbpmmdc1&st=s9jm8p5j&raw=1", desc: "Vtuber初の「多姿類」を名乗る猫魁の緋華ミタマと申します! 小説に漫画、画集に絵本に図鑑…気になったらほいほい手に取っちゃう…読むのはもちろん装丁にもトキメキがいっぱい、本って面白い!", yt: "https://youtube.com/@henge_mitama", x: "https://x.com/henge_mitama" },
-                    { f: "5F", color: "#f39c12", name: "風見カプラ", img: "https://www.dropbox.com/scl/fi/fkyktllkg0lgabyn82pe4/Kapura.png?rlkey=rfkqza7nktcvo8pk443c98ps2&st=wzzm9fcm&raw=1", desc: "Всем привет! 日本語とロシア語で配信中! 語学と創作大好きなVTuber 風見カプラです! 辞書通読配信や語学講座の同時視聴、毎日の単語紹介ショートなどで言葉を知る楽しさを発信しています!", yt: "https://youtube.com/@kapra_kazami", x: "https://x.com/kazami_kapra" },
-                    { f: "6F", color: "#2d3436", name: "やすみ", img: "https://www.dropbox.com/scl/fi/fcn137gxv40h6ud56api2/Yasumi.png?rlkey=nbx5v04ewgi6qa1twl8dz848k&st=0830x86o&raw=1", desc: "こんばんは、やすみといいます。白黒世界に住んでいる、君の友達です。誰もが寝静まった深夜2時、寂しさや不安が消えるまで、退屈が満たされるまで、人恋しさがおさまるまで、朝の光が見えるまで、私とお話しませんか?", yt: "https://youtube.com/@yasumi_ch", x: "https://x.com/_Yasumichan_" },
-                    { f: "7F", color: "#1a2a6c", name: "ほのかかのん", img: "https://www.dropbox.com/scl/fi/fhx6uvmum8jfi4e8w5e0h/Kanon.png?rlkey=xubkrte1vki80yeoncwj2qk76&st=cvqbryk1&raw=1", desc: "全速前進！ヨーソーロー！ 元カモメVTuberのほのかかのんです! おしゃべりすること、食べること、歌うこと、本を読むこと、ゲームをすること、とにかくなんでも大好きな天真爛漫で笑顔の耐えないVTuberです! 今日疲れたな…元気欲しいなって言う時に、是非ほのかかのんに会いに来てください!元気を分けてあげちゃいます!", yt: "https://youtube.com/channel/UCrj3vvhicsxH-Q4EbaMJ2iw", x: "https://x.com/honokano_V" },
-                    { f: "8F", color: "#a29bfe", name: "紫月かなで", img: "https://www.dropbox.com/scl/fi/wgy6f5uwn6ky3pcg5rnln/Kaede.png?rlkey=56l0ckxv0iq4klcpi1mki63tr&st=wssbu6c4&raw=1", desc: "紫色大好きVtuberの紫月かなでです! 夢は紫色になること! 沢山の人の私を知ってもらって着実に紫色に近づきたいので是非覚えていってください!", yt: "https://youtube.com/@kanadeshizuki", x: "https://x.com/kanade_sh3tr1" }
-                ];
+        <!-- Floor Guide List -->
+        <div id="floor-guide" class="space-y-12">
+            <!-- Content will be injected by JS -->
+        </div>
 
-                document.write(vtubers.map(v => `
-                    <section class="vtuber-card bg-white p-6 md:p-8 rounded-3xl relative">
-                        <!-- Floor Tag -->
-                        <div class="absolute -top-5 left-8 z-10">
-                            <span class="floor-tag text-xl" style="background-color: ${v.color}; color: ${v.textColor || 'white'};">${v.f}</span>
+        <!-- Game Section (At the Bottom) -->
+        <div id="game-section">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-black mt-4 uppercase">Bonus: VTuber Catch!</h2>
+            </div>
+
+            <div id="game-container">
+                <div class="game-ui">
+                    <div id="score-display" class="ui-bubble">スコア: 0</div>
+                    <div id="timer-display" class="ui-bubble">残り: 30s</div>
+                </div>
+
+                <canvas id="game-canvas"></canvas>
+
+                <div id="modal-screen" class="game-overlay">
+                    <div class="text-center px-4 w-full max-w-sm">
+                        <div id="start-content">
+                            <button id="start-btn" class="btn-play">スタート</button>
                         </div>
                         
-                        <div class="flex flex-col gap-6">
-                            <!-- Upper Part: Image, Name, Buttons -->
-                            <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
-                                <!-- Character Image -->
-                                <img src="${v.img}" alt="${v.name}" class="character-img">
-                                
-                                <!-- Info and Buttons Section -->
-                                <div class="flex-1 flex flex-col justify-between self-stretch py-2">
-                                    <div>
-                                        <h2 class="text-4xl font-black character-name mb-6">${v.name}</h2>
-                                    </div>
-                                    <div class="flex flex-wrap gap-4 mt-auto">
-                                        <a href="${v.yt}" target="_blank" class="btn-yt">
-                                            <i class="fab fa-youtube"></i> YouTube登録
-                                        </a>
-                                        <a href="${v.x}" target="_blank" class="btn-x">
-                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> Xフォロー
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Lower Part: Description (Full Width) -->
-                            <div class="border-t-2 border-dashed border-gray-200 pt-6">
-                                <p class="text-gray-700 leading-loose text-lg font-medium">
-                                    ${v.desc}
-                                </p>
+                        <div id="result-content" class="hidden">
+                            <h3 class="text-xl font-black mb-1 text-gray-400">SCORE</h3>
+                            <div id="final-score" class="text-7xl font-black text-gray-800 mb-8">0</div>
+                            <div class="flex flex-col gap-4">
+                                <button id="share-btn" class="btn-share">
+                                    <i class="fab fa-x-twitter"></i> スコアをポストする
+                                </button>
+                                <button id="retry-btn" class="text-sm font-bold text-gray-400 underline">リトライ</button>
                             </div>
                         </div>
-                    </section>
-                `).join(''));
-            </script>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <footer class="mt-20 mb-10 text-center font-bold text-gray-400">
-            紹介企画・イラスト制作・サイト制作:さやま まや
+            紹介企画・イラスト制作・サイト制作: さやま まや
         </footer>
     </div>
 
+    <script>
+        const vtubers = [
+            { f: "1F", color: "#ff7eb9", name: "さやま まや", img: "https://www.dropbox.com/scl/fi/tfnn7542neu228cwekjkt/Maya.png?rlkey=wy3m284q5cfcoh9x9kdsc6v4a&st=l7uykzpd&raw=1", desc: "7色ボイスのお絵描き天使、「さやま まや」です! 3度の飯より創作がすき! 脳みそバグる声帯マンション×なんでも作る超クリエイター! フォロワーさんを巻き込んでアニメを描いたり、シチュエーションボイスを書いたり、アプリを作ったり……一緒に楽しい世界を作って遊びませんか!? 本屋大賞ノミネート作全読破中です!語りましょう。", yt: "https://youtube.com/@sayamamaya", x: "https://x.com/sayama_live" },
+            { f: "2F", color: "#ffd93d", textColor: "#333", name: "花傘あるみ", img: "https://www.dropbox.com/scl/fi/rn58hhfd429o28u9r64kw/Arumi.png?rlkey=smqr8afxgfw7rn0d1izfg44zq&st=p3ypc9os&raw=1", desc: "スイプロ所属「頭脳は大人、心はクソガキ」深海生まれのてんさいクラゲVTuber! 本業ではマーケティングやチームビルディング、広報、予実管理や管理職などを任されており、ビジネスに役立つ本をオススメできればと思っております!!", yt: "https://youtube.com/@arumihanagasa", x: "https://x.com/Arumi_Hanagasa" },
+            { f: "3F", color: "#ffb6c1", name: "歌与ポメ", img: "https://www.dropbox.com/scl/fi/dny6yxu5y7wiwwlxb2jjt/Pome.png?rlkey=wdt01ve6bb2k3jl26dhdfz8rb&st=h1c87vcg&raw=1", desc: "歌うこととしゃべることが大好きな理系大学院卒の社畜系VTuber。「みんなと一緒に楽しく生きる!」をモットーに、配信活動に加え数回のリアルイベントも企画。実はヨーグルトの妖精だが、人間たちに存在を気付いてもらうため、定期的にポメラニアンの要素を吸っているという噂も…", yt: "https://youtube.com/@utayo_pome", x: "https://x.com/pome_utayo" },
+            { f: "4F", color: "#ff6b6b", name: "絣華ミタマ", img: "https://www.dropbox.com/scl/fi/av4yper2nwan5tecpmw9g/Mitama.png?rlkey=6m9fsksl6sbvte12vqbpmmdc1&st=s9jm8p5j&raw=1", desc: "Vtuber初の「多姿類」を名乗る猫魁の緋華ミタマと申します! 小説に漫画、画集に絵本に図鑑…気になったらほいほい手に取っちゃう…読むのはもちろん装丁にもトキメキがいっぱい、本って面白い!", yt: "https://youtube.com/@henge_mitama", x: "https://x.com/henge_mitama" },
+            { f: "5F", color: "#f39c12", name: "風見カプラ", img: "https://www.dropbox.com/scl/fi/fkyktllkg0lgabyn82pe4/Kapura.png?rlkey=rfkqza7nktcvo8pk443c98ps2&st=wzzm9fcm&raw=1", desc: "Всем привет! 日本語とロシア語で配信中! 語学と創作大好きなVTuber 風見カプラです! 辞書通読配信や語学講座の同時視聴、毎日の単語紹介ショートなどで言葉を知る楽しさを発信しています!", yt: "https://youtube.com/@kapra_kazami", x: "https://x.com/kazami_kapra" },
+            { f: "6F", color: "#2d3436", name: "やすみ", img: "https://www.dropbox.com/scl/fi/fcn137gxv40h6ud56api2/Yasumi.png?rlkey=nbx5v04ewgi6qa1twl8dz848k&st=0830x86o&raw=1", desc: "こんばんは、やすみといいます。白黒世界に住んでいる、君の友達です。誰もが寝静まった深夜2時、寂しさや不安が消えるまで、退屈が満たされるまで、人恋しさがおさまるまで、朝の光が見えるまで、私とお話しませんか?", yt: "https://youtube.com/@yasumi_ch", x: "https://x.com/_Yasumichan_" },
+            { f: "7F", color: "#1a2a6c", name: "ほのかかのん", img: "https://www.dropbox.com/scl/fi/fhx6uvmum8jfi4e8w5e0h/Kanon.png?rlkey=xubkrte1vki80yeoncwj2qk76&st=cvqbryk1&raw=1", desc: "全速前進！ヨーソーロー！ 元カモメVTuberのほのかかのんです! おしゃべりすること、食べること、歌うこと、本を読むこと、ゲームをすること、とにかくなんでも大好きな天真爛漫で笑顔の耐えないVTuberです! 今日疲れたな…元気欲しいなって言う時に、是非ほのかかのんに会いに来てください!元気を分けてあげちゃいます!", yt: "https://youtube.com/channel/UCrj3vvhicsxH-Q4EbaMJ2iw", x: "https://x.com/honokano_V" },
+            { f: "8F", color: "#a29bfe", name: "紫月かなで", img: "https://www.dropbox.com/scl/fi/wgy6f5uwn6ky3pcg5rnln/Kaede.png?rlkey=56l0ckxv0iq4klcpi1mki63tr&st=wssbu6c4&raw=1", desc: "紫色大好きVtuberの紫月かなでです! 夢は紫色になること! 沢山の人の私を知ってもらって着実に紫色に近づきたいので是非覚えていってください!", yt: "https://youtube.com/@kanadeshizuki", x: "https://x.com/kanade_sh3tr1" }
+        ];
+
+        document.getElementById('floor-guide').innerHTML = vtubers.map(v => `
+            <section class="vtuber-card bg-white p-6 md:p-8 rounded-3xl relative">
+                <div class="absolute -top-5 left-8 z-10">
+                    <span class="floor-tag text-xl" style="background-color: ${v.color}; color: ${v.textColor || 'white'};">${v.f}</span>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <img src="${v.img}" alt="${v.name}" class="character-img">
+                        <div class="flex-1 flex flex-col justify-between self-stretch py-2">
+                            <h2 class="text-4xl font-black character-name mb-6">${v.name}</h2>
+                            <div class="flex flex-wrap gap-4 mt-auto">
+                                <a href="${v.yt}" target="_blank" class="btn-yt"><i class="fab fa-youtube"></i> YouTube登録</a>
+                                <a href="${v.x}" target="_blank" class="btn-x"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> Xフォロー</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-t-2 border-dashed border-gray-200 pt-6">
+                        <p class="text-gray-700 leading-loose text-lg font-medium">${v.desc}</p>
+                    </div>
+                </div>
+            </section>
+        `).join('');
+
+        // --- Game Logic ---
+        const container = document.getElementById('game-container');
+        const canvas = document.getElementById('game-canvas');
+        const ctx = canvas.getContext('2d');
+        const scoreDisplay = document.getElementById('score-display');
+        const timerDisplay = document.getElementById('timer-display');
+        const modalScreen = document.getElementById('modal-screen');
+        const startBtn = document.getElementById('start-btn');
+        const retryBtn = document.getElementById('retry-btn');
+        const shareBtn = document.getElementById('share-btn');
+        const startContent = document.getElementById('start-content');
+        const resultContent = document.getElementById('result-content');
+        const finalScoreDisplay = document.getElementById('final-score');
+
+        const imageMap = {};
+        vtubers.forEach(v => {
+            const img = new Image();
+            img.src = v.img;
+            imageMap[v.name] = img;
+        });
+
+        let width, height, dpr;
+        let player = { x: 0, y: 0, w: 90, h: 45 };
+        let items = [];
+        let score = 0;
+        let timeLeft = 30;
+        let isGameRunning = false;
+        let lastSpawnTime = 0;
+        let timerInterval = null;
+        let animationId = null;
+
+        function resize() {
+            dpr = window.devicePixelRatio || 1;
+            width = container.clientWidth;
+            height = container.clientHeight;
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            ctx.scale(dpr, dpr);
+            player.y = height - 60;
+            if (!isGameRunning) player.x = (width / 2) - (player.w / 2);
+        }
+
+        function handleInput(clientX) {
+            if (!isGameRunning) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = (clientX - rect.left) * (width / rect.width);
+            player.x = x - (player.w / 2);
+            if (player.x < 0) player.x = 0;
+            if (player.x > width - player.w) player.x = width - player.w;
+        }
+
+        canvas.addEventListener('mousemove', (e) => handleInput(e.clientX));
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            handleInput(e.touches.clientX);
+        }, { passive: false });
+
+        function drawBasket(x, y, w, h) {
+            ctx.save();
+            ctx.fillStyle = '#c5a580'; // Simple brown paint style
+            
+            // Simple hand-drawn like shape
+            ctx.beginPath();
+            ctx.moveTo(x + 5, y);
+            ctx.lineTo(x + w - 5, y);
+            ctx.lineTo(x + w - 15, y + h);
+            ctx.lineTo(x + 15, y + h);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.restore();
+        }
+
+        function createItem() {
+            const isBomb = Math.random() < 0.15;
+            const vt = vtubers[Math.floor(Math.random() * vtubers.length)];
+            const size = 60;
+            items.push({
+                x: Math.random() * (width - size),
+                y: -size,
+                isBomb,
+                vtName: vt.name,
+                speed: 3 + (score / 600) + Math.random() * 2,
+                size
+            });
+        }
+
+        function loop(timestamp) {
+            if (!isGameRunning) return;
+            if (!lastSpawnTime) lastSpawnTime = timestamp;
+            if (timestamp - lastSpawnTime > 700) {
+                createItem();
+                lastSpawnTime = timestamp;
+            }
+
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw Basket (Simplified filled shape)
+            drawBasket(player.x, player.y, player.w, player.h);
+
+            for (let i = items.length - 1; i >= 0; i--) {
+                const it = items[i];
+                it.y += it.speed;
+
+                if (it.isBomb) {
+                    ctx.font = '40px Arial';
+                    ctx.fillText('💣', it.x + 10, it.y + 10);
+                } else {
+                    const img = imageMap[it.vtName];
+                    if (img && img.complete) ctx.drawImage(img, it.x, it.y, it.size, it.size);
+                }
+
+                if (it.x < player.x + player.w && it.x + it.size > player.x && it.y < player.y + player.h && it.y + it.size > player.y) {
+                    score += it.isBomb ? -50 : 10;
+                    score = Math.max(0, score);
+                    scoreDisplay.innerText = `スコア: ${score}`;
+                    items.splice(i, 1);
+                    continue;
+                }
+                if (it.y > height + 100) items.splice(i, 1);
+            }
+            animationId = requestAnimationFrame(loop);
+        }
+
+        function startGame() {
+            score = 0;
+            timeLeft = 30;
+            items = [];
+            scoreDisplay.innerText = "スコア: 0";
+            timerDisplay.innerText = "残り: 30s";
+            isGameRunning = true;
+            modalScreen.style.display = 'none';
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.innerText = `残り: ${timeLeft}s`;
+                if (timeLeft <= 0) endGame();
+            }, 1000);
+            requestAnimationFrame(loop);
+        }
+
+        function endGame() {
+            isGameRunning = false;
+            clearInterval(timerInterval);
+            cancelAnimationFrame(animationId);
+            finalScoreDisplay.innerText = score;
+            startContent.classList.add('hidden');
+            resultContent.classList.remove('hidden');
+            modalScreen.style.display = 'flex';
+        }
+
+        startBtn.onclick = startGame;
+        retryBtn.onclick = startGame;
+        shareBtn.onclick = () => {
+            const text = encodeURIComponent(`ミニゲーム「VTuber Catch!」\nスコア: ${score}\n#未来V書店 #VTuberCatch`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        };
+
+        window.addEventListener('resize', resize);
+        window.onload = resize;
+    </script>
 </body>
 </html>
